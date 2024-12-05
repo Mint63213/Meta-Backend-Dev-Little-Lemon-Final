@@ -90,3 +90,18 @@ http://127.0.0.1:8000/apis/menu-items-api/
 http://127.0.0.1:8000/apis/menu-items-api/<str:name>
 http://127.0.0.1:8000/apis/booking-api/
 http://127.0.0.1:8000/apis/booking-api/<str:last_name>
+--------------------------------------------------------
+The tests can be executed after by commenting out from settings:
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+
+and commenting out from the API views in views.py:
+permission_classes
+authentication_classes 
+
+The ececution codes are commented into the test.py
