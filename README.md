@@ -105,3 +105,7 @@ permission_classes
 authentication_classes 
 
 The ececution codes are commented into the test.py
+------------------------------------------------------------
+I chose to leave out the "'api-token-auth/', obtain_auth_token"
+after realizing it has the same functionality of djoser's
+built-in "auth/token/login/".
