@@ -1,1 +1,92 @@
-# Meta-Backend-Dev-Little-Lemon-Final
+Little Lemon Web Application-Peer Graded Assignment
+
+1) Evaluate the following: 
+Does the web application use Django to serve static HTML content?
+
+2) Has the learner committed the project to a Git repository?
+
+3) Does the application connect the backend to a MySQL database?
+
+4) Are the menu and table booking APIs implemented?
+
+5) Is the application set up with user registration and authentication?
+
+6) Does the application contain unit tests?
+
+7) Can the API be tested with the Insomnia REST client?
+-----------------------------------------------------
+Requirements:
+
+django 5.1.2
+djangorestframework 3.15.2
+djangorestframework-simplejwt 5.3.1
+mysqlclient 2.2.6
+djoser 2.3.1
+bleach 6.2.0
+-----------------------------------------------------
+Peer-review Instructions:
+
+1) createsuperuser: "admin" "lemon@789!"
+
+2) Fix settings.py for your personal DB location
+
+3) Add database in MySQL:
+(Drop DATABASE littlelemon;)(*if needed)
+
+a) CREATE DATABASE LittleLemon;
+
+b) (make migrations to create the tables)
+
+c) Paste this script into your sql terminal to add appropriate menu items:
+/*
+INSERT INTO restaurant_menu (name, menu_item_description, price) VALUES
+('Greek salad', 'Our famous Greek salad of crispy lettuce, peppers, olives,
+ and our Chicago-style feta cheese. Garnished with crispy onion and salty
+ capers.', 12),
+('Grilled fish', 'The fish is swiftly grilled over medium- or high-heat coals
+ or over medium- or high-heat gas grill burners. Thinner fillets and steaks are
+ grilled over direct fire.', 9),
+('Bruschetta', 'An Italian antipasto called bruschetta is made of grilled bread
+ that has been smeared with garlic and seasoned with salt and olive oil. Toppings
+ of tomato, veggies, beans, cured pork, or cheese are examples of variations. In
+ Italy, a brustolina grill is frequently used to create bruschetta.', 11),
+('Lemon dessert', 'This cake is adored not only for its flavor but also for its
+ texture and simplicity. A base of creamed butter and sugar, eggs, lemon, milk,
+ and flour are among the most basic ingredients. We omitted the brown sugar and
+ substituted extra granulated sugar instead.', 7),
+('Lamb ribs', 'Ribs of a lamb. Sauced. Tender. Enjoy with our Mediterranean Loaf.', 17);
+*/
+
+4) Add users:
+ Username | password | user settings
+
+a) ManagerOne  | lemon@789! | Staff status
+b) ManagerTwo | lemon@789! | Staff status
+c) CustomerOne | lemon@789! | Active
+d) CustomerTwo | lemon@789! | Active
+-----------------------------------------------------
+Project Notes:
+
+1) First, test using manually generated tokens for api calls during testing,
+ and test through Insomnia or Postman. Also, users must be Staff status. 
+Configure staff user using the Admin Console, selecting a User, and checking 
+the box "Staff status", and saving.
+
+2) Second, uncomment the authentication_classes = [SessionAuthentication, 
+BasicAuthentication] from the API views in views.py, and login through the 
+webpage to generate a session and visit the api endpoints from the browser 
+using a Manager or Super user.
+
+3) Users may register through the link on the login page. New users will be 
+only 'Active' by default, not 'Staff status'. Users may only make bookings 
+if they're registered and logged in.
+
+------------------------------------------------------
+
+Authorized users may search individual menu items and bookings through the api 
+using the following urls:
+
+http://127.0.0.1:8000/apis/menu-items-api/
+http://127.0.0.1:8000/apis/menu-items-api/<str:name>
+http://127.0.0.1:8000/apis/booking-api/
+http://127.0.0.1:8000/apis/booking-api/<str:last_name>
