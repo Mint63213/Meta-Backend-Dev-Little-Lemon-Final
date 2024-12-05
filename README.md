@@ -1,4 +1,4 @@
-Little Lemon Web Application-Peer Graded Assignment
+#Little Lemon Web Application-Peer Graded Assignment
 
 1) Evaluate the following: 
 Does the web application use Django to serve static HTML content?
@@ -15,30 +15,28 @@ Does the web application use Django to serve static HTML content?
 
 7) Can the API be tested with the Insomnia REST client?
 -----------------------------------------------------
-Requirements:
+#Requirements
 
-django 5.1.2
-djangorestframework 3.15.2
-djangorestframework-simplejwt 5.3.1
-mysqlclient 2.2.6
-djoser 2.3.1
-bleach 6.2.0
+django 5.1.2<br>
+djangorestframework 3.15.2<br>
+djangorestframework-simplejwt 5.3.1<br>
+mysqlclient 2.2.6<br>
+djoser 2.3.1<br>
+bleach 6.2.0<br>
 -----------------------------------------------------
-Peer-review Instructions:
+#Peer-review Instructions
 
-1) createsuperuser: "admin" "lemon@789!"
+1) Fix settings.py for your personal DB location<br>
 
-2) Fix settings.py for your personal DB location
+2) Add database in MySQL:<br>
+(Drop DATABASE littlelemon;)(*if needed)<br>
 
-3) Add database in MySQL:
-(Drop DATABASE littlelemon;)(*if needed)
+a) CREATE DATABASE LittleLemon;<br>
 
-a) CREATE DATABASE LittleLemon;
+b) (make migrations to create the tables)<br>
 
-b) (make migrations to create the tables)
-
-c) Paste this script into your sql terminal to add appropriate menu items:
-/*
+c) Paste this script into your sql terminal to add appropriate menu items:<br>
+/*<br>
 INSERT INTO restaurant_menu (name, menu_item_description, price) VALUES
 ('Greek salad', 'Our famous Greek salad of crispy lettuce, peppers, olives,
  and our Chicago-style feta cheese. Garnished with crispy onion and salty
@@ -54,44 +52,48 @@ INSERT INTO restaurant_menu (name, menu_item_description, price) VALUES
  texture and simplicity. A base of creamed butter and sugar, eggs, lemon, milk,
  and flour are among the most basic ingredients. We omitted the brown sugar and
  substituted extra granulated sugar instead.', 7),
-('Lamb ribs', 'Ribs of a lamb. Sauced. Tender. Enjoy with our Mediterranean Loaf.', 17);
+('Lamb ribs', 'Ribs of a lamb. Sauced. Tender. Enjoy with our Mediterranean Loaf.', 17);<br>
 */
 
-4) Add users:
- Username | password | user settings
+#Add users:
+ Username | password | user settings<br>
 
-a) ManagerOne  | lemon@789! | Staff status
-b) ManagerTwo | lemon@789! | Staff status
-c) CustomerOne | lemon@789! | Active
-d) CustomerTwo | lemon@789! | Active
+a) admindjango | lemon@789!  | superuser<br>
+b) ManagerOne  | lemon@789! | Staff status<br>
+c) ManagerTwo | lemon@789! | Staff status<br>
+d) CustomerOne | lemon@789! | Active<br>
+e) CustomerTwo | lemon@789! | Active<br>
 -----------------------------------------------------
-Project Notes:
+#Project Notes
 
-1) First, test using manually generated tokens for api calls during testing,
- and test through Insomnia or Postman. Also, users must be Staff status. 
-Configure staff user using the Admin Console, selecting a User, and checking 
-the box "Staff status", and saving.
+I have the following recommendations:<br>
+
+1) Users must be Staff status. Configure staff user using the Admin Console, 
+selecting a User, and checking the box "Staff status", and saving. First, 
+Test using manually generated tokens through API testing client.
+for API calls.<br>
 
 2) Second, uncomment the authentication_classes = [SessionAuthentication, 
 BasicAuthentication] from the API views in views.py, and login through the 
-webpage to generate a session and visit the api endpoints from the browser 
-using a Manager or Super user.
+webpage to generate a session using a Staff user or Super user, and visit the
+ api endpoints from the browser.<br>
 
 3) Users may register through the link on the login page. New users will be 
 only 'Active' by default, not 'Staff status'. Users may only make bookings 
-if they're registered and logged in.
+if they're registered and logged in.<br>
 
 ------------------------------------------------------
-
+#API Endpoints
 Authorized users may search individual menu items and bookings through the api 
 using the following urls:
 
-http://127.0.0.1:8000/apis/menu-items-api/
-http://127.0.0.1:8000/apis/menu-items-api/<str:name>
-http://127.0.0.1:8000/apis/booking-api/
-http://127.0.0.1:8000/apis/booking-api/<str:last_name>
+http://127.0.0.1:8000/apis/menu-items-api/<br>
+http://127.0.0.1:8000/apis/menu-items-api/str:name<br>
+http://127.0.0.1:8000/apis/booking-api/<br>
+http://127.0.0.1:8000/apis/booking-api/str:last_name<br>
 --------------------------------------------------------
-The tests can be executed after by commenting out from settings:
+#Test
+The tests can be executed after by commenting out from settings:<br>
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
@@ -99,13 +101,15 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
-
-and commenting out from the API views in views.py:
+<br>
+and commenting out from the API views in views.py:<br>
 permission_classes
 authentication_classes 
-
-The ececution codes are commented into the test.py
+<br>
+The execution codes are commented into the test.py<br>
+(I need to study more testing)
 ------------------------------------------------------------
-I chose to leave out the "'api-token-auth/', obtain_auth_token"
+Originally, I chose to leave out the "'api-token-auth/', obtain_auth_token"
 after realizing it has the same functionality of djoser's
-built-in "auth/token/login/".
+built-in "auth/token/login/".<br>
+(needs more research)
